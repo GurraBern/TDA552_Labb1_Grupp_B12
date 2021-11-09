@@ -1,7 +1,10 @@
 import java.awt.*;
-import java.sql.Time;
+import java.util.Objects;
+import java.util.Vector;
 
-public class Car extends Movable {
+import static java.lang.System.out;
+
+public class Car implements Movable {
     //added final to variables
     public final String modelName; // The car model name
     private Color color; // Color of the car
@@ -9,7 +12,7 @@ public class Car extends Movable {
     private double currentSpeed; // The current speed of the car
     private final double enginePower; // Engine power of the car
     private final static double trimFactor = 1.25;
-    public float currentPosition;
+    public Point currentPosition = new Point(0,0);
 
     public Car(String modelName, Color color, Integer nrDoors, double enginePower) {
         this.modelName = modelName;
@@ -17,25 +20,39 @@ public class Car extends Movable {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         stopEngine();
-        //this.currentPosition = new Vector2(0, 0);
     }
-    //Set
-    void move(String direction) {
-        if (direction == "w") {
-            gas(1);
+
+    public void move(String input) {
+        if (currentSpeed > 0) {
+            if (Objects.equals(input, "w")) {
+                gas(1);
+            } else if (Objects.equals(input, "s")) {
+                brake(1);
+            } else if (Objects.equals(input, "d")) {
+                turnRight();
+            } else if (Objects.equals(input, "a")) {
+                turnLeft();
+            }
+        } else if (Objects.equals(input, "e")) {
+            this.startEngine();
         }
 
-        //this.currentPosition.x += currentSpeed;
-        //this.currentPosition.y += currentSpeed;
-        this.currentPosition += currentSpeed;
-        //if input = s
-        //brake(1);
+        updatePosition(this.currentPosition);
+        gas(0);
     }
-    void turnLeft() {
+
+    public void turnLeft() {
 
     }
-    void turnRight() {
 
+    public void turnRight() {
+
+    }
+
+    private Point updatePosition(Point currentPosition)  {
+        currentPosition.x += currentSpeed;
+        currentPosition.y += currentSpeed;
+        return currentPosition;
     }
 
     public int getNrDoors(){
@@ -53,9 +70,6 @@ public class Car extends Movable {
     public Color getColor(){
         return this.color;
     }
-    /*public Vector2 getCurrentPosition(){
-        return this.currentPosition;
-    }*/
 
     private void setColor(Color clr){
         this.color = clr;
@@ -69,6 +83,7 @@ public class Car extends Movable {
         this.currentSpeed = 0;
     }
 
+    // TODO ta bort trimfactor och lägg på volvo
     private double speedFactor(){
         return this.enginePower * 0.01 * trimFactor;
     }
@@ -89,15 +104,5 @@ public class Car extends Movable {
     // TODO fix this method according to lab pm
     public void brake(double amount){
         decrementSpeed(amount);
-    }
-
-    public class Vector2 {
-        public float x;
-        public float y;
-
-        public  Vector2(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
     }
 }

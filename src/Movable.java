@@ -1,7 +1,5 @@
-public class Movable {
-    interface Car {
-        void move(String direction);
-        void turnLeft();
-        void turnRight();
-    }
+public interface Movable {
+    void move(String input);
+    void turnRight();
+    void turnLeft();
 }
