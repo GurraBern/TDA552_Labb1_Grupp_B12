@@ -23,11 +23,17 @@ public abstract class Car implements Movable {
         if (currentSpeed > 0) {
            userInput(input);
         } else {
-            //TODO starta/stäng av
             if (Objects.equals(input, "e")) {
-                this.startEngine();
+                if (getCurrentSpeed() <= 0)
+                    startEngine();
+                else {
+                    stopEngine();
+                }
             }
         }
+
+
+
         updatePosition(this.currentPosition);
     }
 
