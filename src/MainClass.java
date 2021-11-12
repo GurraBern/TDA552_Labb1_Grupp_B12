@@ -7,7 +7,7 @@ public class MainClass {
         Scanner sc = new Scanner(System.in);
         String input;
 
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 10);
+        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         Saab95 saab95 = new Saab95("Saab95", Color.RED, 2, 125);
 
         //Fixa turbo On knapp

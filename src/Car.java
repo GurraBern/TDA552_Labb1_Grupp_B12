@@ -19,18 +19,16 @@ public abstract class Car implements Movable {
     }
 
     public void move(String input) {
-        gas(0);
-        if (currentSpeed > 0) {
-           userInput(input);
-        } else {
-            if (Objects.equals(input, "e")) {
-                if (getCurrentSpeed() <= 0)
-                    startEngine();
-                else {
-                    stopEngine();
-                }
+        //gas(0);
+        userInput(input);
+        if (Objects.equals(input, "e")) {
+            if (getCurrentSpeed() <= 0)
+                startEngine();
+            else {
+                stopEngine();
             }
         }
+
 
 
 
