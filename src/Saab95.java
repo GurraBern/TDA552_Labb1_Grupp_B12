@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Objects;
 
 public class Saab95 extends Car{
     private boolean turboOn;
@@ -8,11 +9,31 @@ public class Saab95 extends Car{
         setTurboOff();
     }
 
-    public void setTurboOn(){
+    @Override
+    protected void userInput(String input) {
+        startButton(input);
+        if (getEngineState()) {
+            basicUserInput(input);
+
+            if (Objects.equals(input, "t")){
+                turboButton();
+            }
+        }
+    }
+
+    private void turboButton(){
+        if (!turboOn)
+            setTurboOn();
+        else {
+            setTurboOff();
+        }
+    }
+
+    private void setTurboOn(){
 	    turboOn = true;
     }
 
-    public void setTurboOff(){
+    private void setTurboOff(){
 	    turboOn = false;
     }
 

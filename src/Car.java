@@ -2,13 +2,14 @@ import java.awt.*;
 import java.util.Objects;
 
 public abstract class Car implements Movable {
-    private String modelName; // The car model name
+    private final String modelName; // The car model name
     private Color color; // Color of the car
-    private int nrDoors; // Number of doors on the car
+    private final int nrDoors; // Number of doors on the car
     private double currentSpeed; // The current speed of the car
-    private double enginePower; // Engine power of the car
+    private final double enginePower; // Engine power of the car
     private Point currentPosition = new Point(0,0);
     private int directionNumber = 0;
+    private boolean engineOn;
 
     public Car(String modelName, Color color, Integer nrDoors, double enginePower) {
         this.modelName = modelName;
@@ -19,23 +20,11 @@ public abstract class Car implements Movable {
     }
 
     public void move(String input) {
-        //gas(0);
         userInput(input);
-        if (Objects.equals(input, "e")) {
-            if (getCurrentSpeed() <= 0)
-                startEngine();
-            else {
-                stopEngine();
-            }
-        }
-
-
-
-
         updatePosition(this.currentPosition);
     }
 
-    public void userInput(String input) {
+    protected void basicUserInput(String input) {
         if (Objects.equals(input, "w")) {
             gas(1);
         } else if (Objects.equals(input, "s")) {
@@ -45,6 +34,12 @@ public abstract class Car implements Movable {
         } else if (Objects.equals(input, "a")) {
             turnLeft();
         }
+    }
+
+    protected void userInput(String input) {
+        startButton(input);
+        if (engineOn)
+            basicUserInput(input);
     }
 
     public void turnLeft() {
@@ -100,19 +95,41 @@ public abstract class Car implements Movable {
         return this.color;
     }
 
+    public boolean getEngineState(){
+        return this.engineOn;
+    }
+
+    public int getCurrentDirection() {
+        return this.directionNumber;
+    }
+
     private void setColor(Color clr){
         this.color = clr;
     }
 
-    public void startEngine(){
+    private void startEngine() {
         this.currentSpeed = 0.1;
+        this.engineOn = true;
     }
 
-    public void stopEngine(){
+    private void stopEngine(){
         this.currentSpeed = 0;
+        this.engineOn = false;
     }
 
-    protected abstract double speedFactor();
+    public void startButton(String input){
+        if (Objects.equals(input, "e")) {
+            if (!engineOn)
+                startEngine();
+            else {
+                stopEngine();
+            }
+        }
+    }
+
+    protected double speedFactor() {
+        return this.getEnginePower() * 0.01;
+    }
 
     private void incrementSpeed(double amount){
         this.currentSpeed = getCurrentSpeed() + speedFactor() * amount;
