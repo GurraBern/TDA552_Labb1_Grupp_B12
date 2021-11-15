@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.Scanner;
 import static java.lang.System.out;
 
@@ -18,10 +17,8 @@ public class MainClass {
             out.println("Current Posistion = " + volvo240.getCurrentPosition());
             out.println("Current Speed = " + volvo240.getCurrentSpeed());
 
-            if (input.equals("exit")) {
+            if (input.equals("exit"))
                 runGame = false;
-            }
-
         }
     }
 }

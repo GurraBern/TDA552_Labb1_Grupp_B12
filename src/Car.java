@@ -129,11 +129,7 @@ public abstract class Car implements Movable {
 
     protected abstract void incrementSpeed(double amount);
 
-    private void decrementSpeed(double amount){
-        this.currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-        if (this.currentSpeed < 0)
-            this.currentSpeed = 0;
-    }
+    protected abstract void decrementSpeed(double amount);
 
     public void gas(double amount){
         incrementSpeed(amount);
