@@ -5,7 +5,7 @@ public abstract class Car implements Movable {
     private final String modelName; // The car model name
     private Color color; // Color of the car
     private final int nrDoors; // Number of doors on the car
-    private double currentSpeed; // The current speed of the car
+    protected double currentSpeed; // The current speed of the car
     private final double enginePower; // Engine power of the car
     private Point currentPosition = new Point(0,0);
     private int directionNumber = 0;
@@ -127,15 +127,7 @@ public abstract class Car implements Movable {
         }
     }
 
-    protected double speedFactor() {
-        return this.getEnginePower() * 0.01;
-    }
-
-    private void incrementSpeed(double amount){
-        this.currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-        if (getCurrentSpeed() > getEnginePower())
-            this.currentSpeed = getEnginePower();
-    }
+    protected abstract void incrementSpeed(double amount);
 
     private void decrementSpeed(double amount){
         this.currentSpeed = getCurrentSpeed() - speedFactor() * amount;
