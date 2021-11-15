@@ -1,13 +1,18 @@
+import org.junit.Before;
 import org.junit.Test;
-
 import java.awt.*;
-
 import static org.junit.Assert.*;
 
 public class CarTest {
+    Volvo240 volvo240;
+    @Before
+    public void init() {
+        volvo240 = new Volvo240();
+    }
+
     @Test
     public void CarCreate() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
+        volvo240 = new Volvo240();
         assertEquals("Volvo240", volvo240.getModelName());
         assertEquals(Color.BLACK, volvo240.getColor());
         assertEquals(4, volvo240.getNrDoors());
@@ -17,7 +22,6 @@ public class CarTest {
 
     @Test
     public void CarMove() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.move("w");
         assertEquals(0, (int) (volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY()));
         volvo240.startButton("e");
@@ -27,7 +31,6 @@ public class CarTest {
 
     @Test
     public void CarTurnLeft() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.move("a");
         volvo240.move("a");
         volvo240.move("a");
@@ -37,7 +40,6 @@ public class CarTest {
     }
     @Test
     public void CarTurnRight() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.move("d");
         volvo240.move("d");
         volvo240.move("d");
@@ -47,14 +49,12 @@ public class CarTest {
     }
     @Test
     public void CarStartEngine() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.startButton("e");
         assertTrue(volvo240.getEngineState());
     }
 
     @Test
     public void CarStopEngine() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.startButton("e");
         volvo240.startButton("e");
         assertFalse(volvo240.getEngineState());
@@ -62,7 +62,6 @@ public class CarTest {
 
     @Test
     public void CarGetCurrentPosition() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.startButton("e");
         volvo240.move("w");
 
@@ -71,7 +70,6 @@ public class CarTest {
 
     @Test
     public void CarGas() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.startButton("e");
         volvo240.gas(1);
         assertEquals(1, volvo240.getCurrentSpeed(), 0.5);
@@ -79,7 +77,6 @@ public class CarTest {
 
     @Test
     public void CarBrake() {
-        Volvo240 volvo240 = new Volvo240("Volvo240", Color.BLACK, 4, 100);
         volvo240.startButton("e");
         volvo240.gas(1);
         volvo240.brake(1);

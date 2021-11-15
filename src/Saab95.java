@@ -4,8 +4,8 @@ import java.util.Objects;
 public class Saab95 extends Car{
     private boolean turboOn;
 
-    public Saab95(String modelName, Color color, Integer nrDoors, double enginePower) {
-        super(modelName, color, nrDoors, enginePower);
+    public Saab95() {
+        super("Saab95", Color.RED, 2, 125);
         setTurboOff();
     }
 
@@ -13,7 +13,7 @@ public class Saab95 extends Car{
     protected void userInput(String input) {
         startButton(input);
         if (getEngineState()) {
-            basicUserInput(input);
+            basicMovementInput(input);
 
             if (Objects.equals(input, "t")){
                 turboButton();

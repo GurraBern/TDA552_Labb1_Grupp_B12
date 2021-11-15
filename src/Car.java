@@ -24,7 +24,7 @@ public abstract class Car implements Movable {
         updatePosition(this.currentPosition);
     }
 
-    protected void basicUserInput(String input) {
+    protected void basicMovementInput(String input) {
         if (Objects.equals(input, "w")) {
             gas(1);
         } else if (Objects.equals(input, "s")) {
@@ -39,7 +39,7 @@ public abstract class Car implements Movable {
     protected void userInput(String input) {
         startButton(input);
         if (engineOn)
-            basicUserInput(input);
+            basicMovementInput(input);
     }
 
     public void turnLeft() {
