@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 import java.awt.*;
+
+import static java.lang.System.out;
 import static org.junit.Assert.*;
 
 public class CarTest {
@@ -21,7 +23,7 @@ public class CarTest {
     }
 
     @Test
-    public void CarMove() {
+    public void CarMoveForward() {
         volvo240.move("w");
         assertEquals(0, (int) (volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY()));
         volvo240.startButton("e");
@@ -30,14 +32,30 @@ public class CarTest {
     }
 
     @Test
-    public void CarTurnLeft() {
-        volvo240.turnLeft();
-        volvo240.turnLeft();
-        volvo240.turnLeft();
-        volvo240.turnLeft();
+    public void CarUserInput() {
+        volvo240.move("e");
+        volvo240.move("w");
+        assertEquals(1, volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY(), 0.1);
 
+        volvo240.move("s");
+        assertEquals(0, volvo240.getCurrentSpeed(), 0.2);
+
+        volvo240.move("a");
+        assertEquals(3, volvo240.getCurrentDirection(), 0.1);
+
+        volvo240.move("d");
+        assertEquals(0, volvo240.getCurrentDirection(), 0.1);
+    }
+
+    @Test
+    public void turnLeft() {
+        volvo240.turnLeft();
+        volvo240.turnLeft();
+        volvo240.turnLeft();
+        volvo240.turnLeft();
         assertEquals(0, volvo240.getCurrentDirection());
     }
+
     @Test
     public void CarTurnRight() {
         volvo240.turnRight();
@@ -46,6 +64,24 @@ public class CarTest {
         volvo240.turnRight();
         assertEquals(0, volvo240.getCurrentDirection());
     }
+
+    @Test
+    public void CarDriveRight() {
+        volvo240.startButton("e");
+        volvo240.turnRight();
+        volvo240.move("w");
+        assertEquals(1, volvo240.getCurrentPosition().getX(), 0.1);
+    }
+
+    @Test
+    public void CarDriveDown() {
+        volvo240.startButton("e");
+        volvo240.turnRight();
+        volvo240.turnRight();
+        volvo240.move("w");
+        assertEquals(-1, volvo240.getCurrentPosition().getY(), 0.1);
+    }
+
     @Test
     public void CarStartEngine() {
         volvo240.startButton("e");

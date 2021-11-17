@@ -22,18 +22,22 @@ public class Saab95 extends Car{
     }
 
     private void turboButton(){
-        if (!turboOn)
-            setTurboOn();
-        else {
+        if (turboOn)
             setTurboOff();
+        else {
+            setTurboOn();
         }
     }
 
-    public void setTurboOn(){
+    public boolean getTurboOn() {
+        return turboOn;
+    }
+
+    private void setTurboOn(){
 	    turboOn = true;
     }
 
-    public void setTurboOff(){
+    private void setTurboOff(){
 	    turboOn = false;
     }
 

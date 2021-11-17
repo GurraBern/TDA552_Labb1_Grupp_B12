@@ -2,7 +2,7 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class MainClass {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
         String input;
 
