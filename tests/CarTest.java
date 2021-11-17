@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 import java.awt.*;
-
-import static java.lang.System.out;
 import static org.junit.Assert.*;
 
 public class CarTest {
