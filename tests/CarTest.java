@@ -31,20 +31,19 @@ public class CarTest {
 
     @Test
     public void CarTurnLeft() {
-        volvo240.move("a");
-        volvo240.move("a");
-        volvo240.move("a");
-        volvo240.move("a");
+        volvo240.turnLeft();
+        volvo240.turnLeft();
+        volvo240.turnLeft();
+        volvo240.turnLeft();
 
         assertEquals(0, volvo240.getCurrentDirection());
     }
     @Test
     public void CarTurnRight() {
-        volvo240.move("d");
-        volvo240.move("d");
-        volvo240.move("d");
-        volvo240.move("d");
-
+        volvo240.turnRight();
+        volvo240.turnRight();
+        volvo240.turnRight();
+        volvo240.turnRight();
         assertEquals(0, volvo240.getCurrentDirection());
     }
     @Test
@@ -76,7 +75,7 @@ public class CarTest {
     }
 
     @Test
-    public void CarBrake() {
+    public void CarBrake() throws Exception {
         volvo240.startButton("e");
         volvo240.gas(1);
         volvo240.brake(1);
