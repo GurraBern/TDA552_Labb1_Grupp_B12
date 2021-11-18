@@ -37,7 +37,8 @@ public abstract class Car implements Movable {
     }
 
     protected void userInput(String input) {
-        startButton(input);
+        if (Objects.equals(input, "e"))
+            startButton();
         if (engineOn)
             basicMovementInput(input);
     }
@@ -117,13 +118,11 @@ public abstract class Car implements Movable {
         this.engineOn = false;
     }
 
-    public void startButton(String input){
-        if (Objects.equals(input, "e")) {
-            if (!engineOn)
-                startEngine();
-            else {
-                stopEngine();
-            }
+    public void startButton(){
+        if (engineOn)
+            stopEngine();
+        else {
+            startEngine();
         }
     }
 

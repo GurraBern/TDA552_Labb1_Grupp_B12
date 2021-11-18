@@ -24,7 +24,7 @@ public class CarTest {
     public void CarMoveForward() {
         volvo240.move("w");
         assertEquals(0, (int) (volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY()));
-        volvo240.startButton("e");
+        volvo240.startButton();
         volvo240.move("w");
         assertEquals(1, (int) (volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY()));
     }
@@ -65,7 +65,7 @@ public class CarTest {
 
     @Test
     public void CarDriveRight() {
-        volvo240.startButton("e");
+        volvo240.startButton();
         volvo240.turnRight();
         volvo240.move("w");
         assertEquals(1, volvo240.getCurrentPosition().getX(), 0.1);
@@ -73,7 +73,7 @@ public class CarTest {
 
     @Test
     public void CarDriveDown() {
-        volvo240.startButton("e");
+        volvo240.startButton();
         volvo240.turnRight();
         volvo240.turnRight();
         volvo240.move("w");
@@ -82,20 +82,20 @@ public class CarTest {
 
     @Test
     public void CarStartEngine() {
-        volvo240.startButton("e");
+        volvo240.startButton();
         assertTrue(volvo240.getEngineState());
     }
 
     @Test
     public void CarStopEngine() {
-        volvo240.startButton("e");
-        volvo240.startButton("e");
+        volvo240.startButton();
+        volvo240.startButton();
         assertFalse(volvo240.getEngineState());
     }
 
     @Test
     public void CarGetCurrentPosition() {
-        volvo240.startButton("e");
+        volvo240.startButton();
         volvo240.move("w");
 
         assertEquals(1, volvo240.getCurrentPosition().y);
@@ -103,14 +103,14 @@ public class CarTest {
 
     @Test
     public void CarGas() {
-        volvo240.startButton("e");
+        volvo240.startButton();
         volvo240.gas(1);
         assertEquals(1, volvo240.getCurrentSpeed(), 0.5);
     }
 
     @Test
     public void CarBrake() throws Exception {
-        volvo240.startButton("e");
+        volvo240.startButton();
         volvo240.gas(1);
         volvo240.brake(1);
 

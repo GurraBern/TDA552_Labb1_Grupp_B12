@@ -11,7 +11,8 @@ public class Saab95 extends Car{
 
     @Override
     protected void userInput(String input) {
-        startButton(input);
+        if (input.equals("e"))
+            startButton();
         if (getEngineState()) {
             basicMovementInput(input);
 
