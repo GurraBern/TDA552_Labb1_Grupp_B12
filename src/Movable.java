@@ -1,5 +1,5 @@
 public interface Movable {
-    void move(String input);
+    void move();
     void turnRight();
     void turnLeft();
 }

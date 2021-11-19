@@ -19,12 +19,21 @@ public abstract class Car implements Movable {
         stopEngine();
     }
 
-    public void move(String input) {
-        userInput(input);
-        updatePosition(this.currentPosition);
+    public void move() {
+        //userInput(input);
+        //updatePosition(this.currentPosition);
+        if (directionNumber == 0) {
+            currentPosition.y += currentSpeed;
+        } else if (directionNumber == 1) {
+            currentPosition.x += currentSpeed;
+        } else if (directionNumber == 2) {
+            currentPosition.y -= currentSpeed;
+        } else if (directionNumber == 3) {
+            currentPosition.x -= currentSpeed;
+        }
     }
 
-    protected void basicMovementInput(String input) {
+    public void basicMovementInput(String input) {
         if (Objects.equals(input, "w")) {
             gas(1);
         } else if (Objects.equals(input, "s")) {
@@ -59,6 +68,7 @@ public abstract class Car implements Movable {
         }
     }
 
+    /*
     private Point updatePosition(Point currentPosition)  {
         if (directionNumber == 0) {
             currentPosition.y += currentSpeed;
@@ -70,7 +80,7 @@ public abstract class Car implements Movable {
             currentPosition.x -= currentSpeed;
         }
         return currentPosition;
-    }
+    }*/
 
     public String getModelName() {
         return this.modelName;
@@ -104,7 +114,7 @@ public abstract class Car implements Movable {
         return this.directionNumber;
     }
 
-    private void setColor(Color clr){
+    public void setColor(Color clr){
         this.color = clr;
     }
 
@@ -126,9 +136,15 @@ public abstract class Car implements Movable {
         }
     }
 
-    protected abstract void incrementSpeed(double amount);
+    private void incrementSpeed(double amount){
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
+    }
 
-    protected abstract void decrementSpeed(double amount);
+    private void decrementSpeed(double amount){
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    }
+
+    protected abstract double speedFactor();
 
     public void gas(double amount){
         if (amount >= 0 && amount <= 1)

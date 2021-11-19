@@ -6,7 +6,8 @@ public class Saab95 extends Car{
 
     public Saab95() {
         super("Saab95", Color.RED, 2, 125);
-        setTurboOff();
+        turboOn = false;
+        //setTurboOff();
     }
 
     @Override
@@ -24,9 +25,11 @@ public class Saab95 extends Car{
 
     private void turboButton(){
         if (turboOn)
-            setTurboOff();
+            turboOn = false;
+            //setTurboOff();
         else {
-            setTurboOn();
+            turboOn = true;
+            //setTurboOn();
         }
     }
 
@@ -34,27 +37,17 @@ public class Saab95 extends Car{
         return turboOn;
     }
 
-    private void setTurboOn(){
-	    turboOn = true;
-    }
+    //private void setTurboOn(){
+	    //turboOn = true;
+    //}
 
-    private void setTurboOff(){
-	    turboOn = false;
-    }
+    //private void setTurboOff(){
+	    //turboOn = false;
+    //}
 
-    private double speedFactor(){
+    public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
         return getEnginePower() * 0.01 * turbo;
-    }
-
-    @Override
-    protected void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-    }
-
-    @Override
-    protected void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
 }

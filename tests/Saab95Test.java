@@ -23,18 +23,18 @@ public class Saab95Test {
     @Test
     public void Saab95Inputs() {
         saab95 = new Saab95();
-        saab95.move("e");
+        saab95.userInput("e");
         assertTrue(saab95.getEngineState());
-        saab95.move("e");
+        saab95.userInput("e");
         assertFalse(saab95.getEngineState());
     }
 
     @Test
     public void SaabTurboTest() {
         saab95.startButton();
-        saab95.move("t");
+        saab95.userInput("t");
         assertTrue(saab95.getTurboOn());
-        saab95.move("t");
+        saab95.userInput("t");
         assertFalse(saab95.getTurboOn());
     }
 

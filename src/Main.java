@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import static java.lang.System.out;
 
-public class MainClass {
-    public static void main(String args) throws InterruptedException {
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
         String input;
 
@@ -12,7 +12,7 @@ public class MainClass {
         boolean runGame = true;
         while (runGame) {
             input = sc.nextLine();
-            volvo240.move(input);
+            volvo240.userInput(input);
 
             out.println("Current Posistion = " + volvo240.getCurrentPosition());
             out.println("Current Speed = " + volvo240.getCurrentSpeed());
