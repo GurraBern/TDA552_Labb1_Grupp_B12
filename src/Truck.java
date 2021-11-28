@@ -1,8 +1,8 @@
 import java.awt.*;
+import java.util.Objects;
 
-public abstract class Car extends Vehicle{
-
-    public Car(String modelName, Color color, Integer nrDoors, double enginePower) {
+public class Truck extends Vehicle{
+    public Truck(String modelName, Color color, Integer nrDoors, double enginePower) {
         super(modelName, color, nrDoors, enginePower);
     }
 

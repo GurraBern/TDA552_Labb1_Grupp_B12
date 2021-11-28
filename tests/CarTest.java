@@ -23,17 +23,17 @@ public class CarTest {
     @Test
     public void CarMoveForward() {
         volvo240.userInput("w");
-        assertEquals(0, (int) (volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY()));
+        assertEquals(0, (int) (volvo240.getPosition().getX() + volvo240.getPosition().getY()));
         volvo240.startButton();
         volvo240.userInput("w");
-        assertEquals(1, (int) (volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY()));
+        assertEquals(1, (int) (volvo240.getPosition().getX() + volvo240.getPosition().getY()));
     }
 
     @Test
     public void CarUserInput() {
         volvo240.userInput("e");
         volvo240.userInput("w");
-        assertEquals(1, volvo240.getCurrentPosition().getX() + volvo240.getCurrentPosition().getY(), 0.1);
+        assertEquals(1, volvo240.getPosition().getX() + volvo240.getPosition().getY(), 0.1);
 
         volvo240.userInput("s");
         assertEquals(0, volvo240.getCurrentSpeed(), 0.2);
@@ -68,7 +68,7 @@ public class CarTest {
         volvo240.startButton();
         volvo240.turnRight();
         volvo240.userInput("w");
-        assertEquals(1, volvo240.getCurrentPosition().getX(), 0.1);
+        assertEquals(1, volvo240.getPosition().getX(), 0.1);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class CarTest {
         volvo240.turnRight();
         volvo240.turnRight();
         volvo240.userInput("w");
-        assertEquals(-1, volvo240.getCurrentPosition().getY(), 0.1);
+        assertEquals(-1, volvo240.getPosition().getY(), 0.1);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class CarTest {
         volvo240.startButton();
         volvo240.userInput("w");
 
-        assertEquals(1, volvo240.getCurrentPosition().y);
+        assertEquals(1, volvo240.getPosition().y);
     }
 
     @Test

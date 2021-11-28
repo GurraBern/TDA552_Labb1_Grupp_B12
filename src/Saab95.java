@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Objects;
 
-public class Saab95 extends Car{
+public class Saab95 extends Car {
     private boolean turboOn;
 
     public Saab95() {
