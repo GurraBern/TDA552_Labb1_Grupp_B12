@@ -8,17 +8,29 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String input;
 
+        Volvo240 volvo240 = new Volvo240();
+        Saab95 saab95 = new Saab95();
 
-        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+        ArrayList<Car> worldCars = new ArrayList<Car>();
+        worldCars.add(volvo240);
+        worldCars.add(saab95);
 
         Scania scania = new Scania("Scania", Color.BLACK, 2, 900, 70);
         CarTransporter cartransporter = new CarTransporter(5);
-        Volvo240 volvo240 = new Volvo240();
-        Saab95 saab95 = new Saab95();
-        vehicles.add(volvo240);
-        vehicles.add(saab95);
+        cartransporter.lowerPlatform();
+
+        volvo240.setLocation(3,0);
+
+        cartransporter.loadCar(volvo240, worldCars);
+        cartransporter.loadCar(saab95, worldCars);
+        cartransporter.unloadCar(worldCars);
+        out.println(worldCars);
+        cartransporter.unloadCar(worldCars);
+        out.println(worldCars);
 
 
+
+        /*
         boolean runGame = true;
         while (runGame) {
             input = sc.nextLine();
@@ -30,5 +42,6 @@ public class Main {
             if (input.equals("exit"))
                 runGame = false;
         }
+         */
     }
 }

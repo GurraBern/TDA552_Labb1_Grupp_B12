@@ -28,6 +28,10 @@ public abstract class TruckWithPlatform extends Truck {
         return angle;
     }
 
+    public void setAngle(int angle) {
+        this.angle = angle;
+    }
+
     public int getMaxAngle() {
         return maxAngle;
     }

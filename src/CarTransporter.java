@@ -3,34 +3,42 @@ import java.util.ArrayList;
 
 public class CarTransporter extends TruckWithPlatform{
     private int storageLimit;
-    private ArrayList<Vehicle> storedCars = new ArrayList<>();
+    private ArrayList<Car> storedCars = new ArrayList<>();
 
     public CarTransporter(int storageLimit) {
         super("CarTransporter", Color.BLUE, 2, 900, 70);
         this.storageLimit = storageLimit;
     }
 
-    public void loadNearbyCars(ArrayList<Car> worldCars) {
-        if (getAngle() == getMaxAngle()) {
-            for (var car: worldCars) {
-                if (calculateDistance(getPosition(), car.getPosition()) < 3) {
-                    storedCars.add(car);
-                }
-            }
-        } else {
-            //Throw exepctions
+    @Override
+    public void move() {
+        super.move();
+        for (var car: storedCars) {
+            car.setLocation(getPosition().x, getPosition().y);
         }
     }
 
-    public void loadCar(Vehicle vehicle, ArrayList<Vehicle> worldVehicles){
+    public void loadCar(Car car, ArrayList<Car> worldCars){
         if (getAngle() == getMaxAngle()) {
-            var dist = calculateDistance(getPosition(), vehicle.getPosition());
-            if (dist < 3) {
-                storedCars.add(vehicle);
-                worldVehicles.remove(vehicle);
+            var dist = calculateDistance(getPosition(), car.getPosition());
+            if (dist <= 3) {
+                storedCars.add(car);
+                worldCars.remove(car);
+            } else {
+                throw new IllegalArgumentException("Car is to far away!");
             }
+
         } else {
-            //Throw exepctions
+            throw new IllegalArgumentException("Transporter ramp must be down to load cars!");
+        }
+    }
+
+    public void unloadCar(ArrayList<Car> worldCars) {
+        if (storedCars.size() > 0) {
+            worldCars.add(storedCars.get(storedCars.size()-1));
+            storedCars.remove(storedCars.size()-1);
+        } else {
+            throw new IllegalArgumentException("There are no stored cars to unload");
         }
     }
 
@@ -38,34 +46,23 @@ public class CarTransporter extends TruckWithPlatform{
         return Math.sqrt(Math.pow((p1.x-p2.x), 2) + Math.pow((p1.y-p2.y), 2));
     }
 
-    public void unloadCar(int count){
-        //TODO add to world again
-    }
-
-    public void unloadAllCars(int count){
-        //TODO add to world again
-    }
-
     public int getStorageLimit() {
         return storageLimit;
     }
 
-
-    public int raisePlatform(int currentAngle) {
-        if (getCurrentSpeed() == 0) {
-            currentAngle = 0;
-            return currentAngle;
-        }
-        //TODO
-        return 0;
+    public ArrayList<Car> getCars () {
+        return storedCars;
     }
 
-    public int lowerPlatform(int currentAngle) {
+    public void raisePlatform() {
         if (getCurrentSpeed() == 0) {
-            currentAngle = 70;
-            return currentAngle;
+            setAngle(0);
         }
-        //TODO Error
-        return 0;
+    }
+
+    public void lowerPlatform() {
+        if (getCurrentSpeed() == 0) {
+            setAngle(70);
+        }
     }
 }
