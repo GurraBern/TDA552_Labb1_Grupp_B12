@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CarTransporter extends TruckWithPlatform{
+public class CarTransporter extends TruckWithPlatform implements IStorage {
     private int storageLimit;
     private ArrayList<Car> storedCars = new ArrayList<>();
 
@@ -13,8 +13,9 @@ public class CarTransporter extends TruckWithPlatform{
     @Override
     public void move() {
         super.move();
+
         for (var car: storedCars) {
-            car.setLocation(getPosition().x, getPosition().y);
+            car.setLocation(getPosition());
         }
     }
 

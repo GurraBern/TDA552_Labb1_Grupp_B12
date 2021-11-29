@@ -19,14 +19,9 @@ public class Main {
         CarTransporter cartransporter = new CarTransporter(5);
         cartransporter.lowerPlatform();
 
-        volvo240.setLocation(3,0);
+        volvo240.setLocation(new Point(3,0));
 
-        cartransporter.loadCar(volvo240, worldCars);
-        cartransporter.loadCar(saab95, worldCars);
-        cartransporter.unloadCar(worldCars);
-        out.println(worldCars);
-        cartransporter.unloadCar(worldCars);
-        out.println(worldCars);
+        volvo240.turnLeft();
 
 
 

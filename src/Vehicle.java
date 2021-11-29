@@ -1,5 +1,7 @@
 import java.awt.*;
-import java.util.Objects;
+import java.util.Arrays;
+
+import static java.lang.System.out;
 
 public abstract class Vehicle implements IMovable {
     private final String modelName; // The car model name
@@ -31,26 +33,11 @@ public abstract class Vehicle implements IMovable {
         }
     }
 
-    public void basicMovementInput(String input) {
-        if (Objects.equals(input, "w")) {
-            gas(1);
-        } else if (Objects.equals(input, "s")) {
-            brake(1);
-        } else if (Objects.equals(input, "d")) {
-            turnRight();
-        } else if (Objects.equals(input, "a")) {
-            turnLeft();
-        }
-    }
-
-    protected void userInput(String input) {
-        if (Objects.equals(input, "e"))
-            startButton();
-        if (engineOn)
-            basicMovementInput(input);
-    }
 
     public void turnLeft() {
+        out.println(DirectionEnum.EAST.getDirection());
+
+
         if (this.directionNumber != 0) {
             this.directionNumber -= 1;
         } else {
@@ -66,9 +53,8 @@ public abstract class Vehicle implements IMovable {
         }
     }
 
-    public void setLocation(int x, int y){
-        this.currentPosition.x = x;
-        this.currentPosition.y = y;
+    public void setLocation(Point position){
+        this.currentPosition = position;
     }
 
     public String getModelName() {
@@ -136,7 +122,7 @@ public abstract class Vehicle implements IMovable {
     protected abstract double speedFactor();
 
     public void gas(double amount){
-        if (amount >= 0 && amount <= 1)
+        if (amount >= 0 && amount <= 1 && engineOn)
             incrementSpeed(amount);
     }
 
