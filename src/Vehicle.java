@@ -35,7 +35,7 @@ public abstract class Vehicle implements IMovable {
 
 
     public void turnLeft() {
-        out.println(DirectionEnum.EAST.getDirection());
+        //out.println(DirectionEnum.EAST.getDirection());
 
 
         if (this.directionNumber != 0) {
