@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Objects;
 
 public class Truck extends Vehicle{
     public Truck(String modelName, Color color, Integer nrDoors, double enginePower) {
@@ -8,6 +7,6 @@ public class Truck extends Vehicle{
 
     @Override
     protected double speedFactor() {
-        return this.getEnginePower()/10 * 0.01;
+        return this.getEnginePower() * 0.01;
     }
 }

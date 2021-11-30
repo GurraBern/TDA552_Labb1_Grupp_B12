@@ -12,12 +12,16 @@ public class Storage<T extends Car> {
     }
 
     public void loadCar(T car, ArrayList worldCars){
-        var dist = calculateDistance(position, car.getPosition());
-        if (dist <= 3) {
-            storedCars.add(car);
-            worldCars.remove(car);
+        if (storedCars.size() < storageLimit) {
+            var dist = calculateDistance(position, car.getPosition());
+            if (dist <= 3) {
+                storedCars.add(car);
+                worldCars.remove(car);
+            } else {
+                throw new IllegalArgumentException("Car is to far away!");
+            }
         } else {
-            throw new IllegalArgumentException("Car is to far away!");
+            throw new IllegalArgumentException("There are no empty space for another car");
         }
     }
 

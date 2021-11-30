@@ -11,11 +11,12 @@ public class CarTransporter<T extends Car> extends TruckWithPlatform {
 
     @Override
     public void move() {
-        super.move();
-
-        storage.setLocation(getPosition());
-        for (var car: storage.getCars()) {
-            car.setLocation(getPosition());
+        if(getAngle() == 0) {
+            super.move();
+            storage.setLocation(getPosition());
+            for (var car: storage.getCars()) {
+                car.setLocation(getPosition());
+            }
         }
     }
 
