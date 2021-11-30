@@ -15,19 +15,24 @@ public class Main {
         worldCars.add(volvo240);
         worldCars.add(saab95);
 
+        Workshop workshop = new Workshop(2, new Point(0,0));
+        Workshop<Volvo240> workshopVolvo240 = new Workshop(2, new Point(0,0));
+        workshopVolvo240.loadCar(volvo240, worldCars);
+
+        out.println(workshopVolvo240.getCars());
+
+
+
+
+        /*
         Scania scania = new Scania("Scania", Color.BLACK, 2, 900, 70);
         CarTransporter cartransporter = new CarTransporter(5);
         cartransporter.lowerPlatform();
+        out.println(cartransporter.getStorageLimit());
 
-        volvo240.setLocation(3,0);
-
-        cartransporter.loadCar(volvo240, worldCars);
-        cartransporter.loadCar(saab95, worldCars);
-        cartransporter.unloadCar(worldCars);
-        out.println(worldCars);
-        cartransporter.unloadCar(worldCars);
-        out.println(worldCars);
-
+        volvo240.setLocation(new Point(3,0));
+        volvo240.turnLeft();
+        */
 
 
         /*

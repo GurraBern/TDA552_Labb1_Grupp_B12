@@ -23,19 +23,19 @@ public class Saab95Test {
     @Test
     public void Saab95Inputs() {
         saab95 = new Saab95();
-        saab95.userInput("e");
+        saab95.startButton();
         assertTrue(saab95.getEngineState());
-        saab95.userInput("e");
+        saab95.startButton();
         assertFalse(saab95.getEngineState());
     }
 
     @Test
     public void SaabTurboTest() {
         saab95.startButton();
-        saab95.userInput("t");
-        assertTrue(saab95.getTurboOn());
-        saab95.userInput("t");
+        saab95.setTurboOff();
         assertFalse(saab95.getTurboOn());
+        saab95.setTurboOn();;
+        assertTrue(saab95.getTurboOn());
     }
 
     @Test
@@ -52,4 +52,6 @@ public class Saab95Test {
         saab95.brake(1);
         assertEquals(0, saab95.getCurrentSpeed(), 0.2);
     }
+
+
 }
