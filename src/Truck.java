@@ -7,6 +7,6 @@ public class Truck extends Vehicle{
 
     @Override
     protected double speedFactor() {
-        return this.getEnginePower() * 0.01;
+        return this.getEnginePower() * 0.005;
     }
 }

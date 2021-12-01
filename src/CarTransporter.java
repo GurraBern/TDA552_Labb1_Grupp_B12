@@ -9,12 +9,15 @@ public class CarTransporter<T extends Car> extends TruckWithPlatform {
         this.storage = new Storage<T>(storageLimit, getPosition());
     }
 
+    /**
+     * Moves Transport and all the contents of it's Storage
+     */
     @Override
     public void move() {
         if(getAngle() == 0) {
             super.move();
             storage.setLocation(getPosition());
-            for (var car: storage.getCars()) {
+            for (Car car: storage.getCars()) {
                 car.setLocation(getPosition());
             }
         }
@@ -26,6 +29,10 @@ public class CarTransporter<T extends Car> extends TruckWithPlatform {
         } else {
             throw new IllegalArgumentException("Transporter ramp must be down to load cars!");
         }
+    }
+
+    public void unloadCar(ArrayList<Volvo240> worldCars) {
+        storage.unloadCar(worldCars);
     }
 
     public ArrayList<T> getCars () {

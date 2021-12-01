@@ -1,6 +1,6 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import static java.lang.System.out;
 
 public class Main {
@@ -29,12 +29,23 @@ public class Main {
         cartransporter.move();
         cartransporter.gas(1);
 
-        ArrayList<Car> carlist = cartransporter.getCars();
-        out.println(carlist.get(0).getPosition());
+        volvo240.startButton();
+        volvo240.gas(1);
+        volvo240.move();
+        volvo240.gas(1);
+        volvo240.move();
 
-        //Workshop workshop = new Workshop(2, new Point(0,0));
-        //Workshop<Volvo240> workshopVolvo240 = new Workshop(2, new Point(0,0));
-        //workshop.loadCar(volvo240, worldCars);
+        out.println(cartransporter.getPosition());
+        out.println(volvo240.getPosition());
+
+        //ArrayList<Car> carlist = cartransporter.getCars();
+        //out.println(carlist.get(0).getPosition());
+
+        /*
+        Workshop workshop = new Workshop(2, new Point(0,0));
+        Workshop<Volvo240> workshopVolvo240 = new Workshop(2, new Point(0,0));
+        workshop.loadCar(saab95, worldCars);
+        */
 
         //out.println(workshop.getCars());
 

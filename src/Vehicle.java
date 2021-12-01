@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.Arrays;
-
 import static java.lang.System.out;
 
 public abstract class Vehicle implements IMovable {
@@ -12,12 +11,14 @@ public abstract class Vehicle implements IMovable {
     private Point currentPosition = new Point(0,0);
     private int directionNumber = 0;
     private boolean engineOn;
+    private boolean handBrakeUp;
 
     public Vehicle(String modelName, Color color, Integer nrDoors, double enginePower) {
         this.modelName = modelName;
         setColor(color);
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
+        handBrakeUp = false;
         stopEngine();
     }
 
@@ -93,6 +94,14 @@ public abstract class Vehicle implements IMovable {
         this.color = clr;
     }
 
+    public void pullHandbrake() {
+        handBrakeUp = true;
+    }
+
+    public void releaseHandbrake() {
+        handBrakeUp = false;
+    }
+
     private void startEngine() {
         this.currentSpeed = 0.1;
         this.engineOn = true;
@@ -122,7 +131,7 @@ public abstract class Vehicle implements IMovable {
     protected abstract double speedFactor();
 
     public void gas(double amount){
-        if (amount >= 0 && amount <= 1 && engineOn)
+        if (amount >= 0 && amount <= 1 && engineOn && !handBrakeUp)
             incrementSpeed(amount);
     }
 

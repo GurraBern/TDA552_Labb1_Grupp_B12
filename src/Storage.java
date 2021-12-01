@@ -15,6 +15,7 @@ public class Storage<T extends Car> {
         if (storedCars.size() < storageLimit) {
             var dist = calculateDistance(position, car.getPosition());
             if (dist <= 3) {
+                car.pullHandbrake();
                 storedCars.add(car);
                 worldCars.remove(car);
             } else {
@@ -25,17 +26,18 @@ public class Storage<T extends Car> {
         }
     }
 
-    public void setLocation(Point position) {
-        this.position = position;
-    }
-
     public void unloadCar(ArrayList worldCars) {
         if (storedCars.size() > 0) {
+            storedCars.get(storedCars.size()-1).releaseHandbrake();
             worldCars.add(storedCars.get(storedCars.size()-1));
             storedCars.remove(storedCars.size()-1);
         } else {
             throw new IllegalArgumentException("There are no stored cars to unload");
         }
+    }
+
+    public void setLocation(Point position) {
+        this.position = position;
     }
 
     private double calculateDistance(Point p1, Point p2) {
