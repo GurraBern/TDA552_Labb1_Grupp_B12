@@ -18,7 +18,7 @@ public class VolvoTest {
     @Test
     public void VolvoGas() {
         volvo240 = new Volvo240();
-        volvo240.startButton();
+        volvo240.startEngine();
         volvo240.gas(1);
         assertEquals(1.25, volvo240.getCurrentSpeed(), 0.2);
     }
@@ -37,7 +37,7 @@ public class VolvoTest {
     @Test
     public void TurnLeft() {
         volvo240 = new Volvo240();
-        volvo240.startButton();
+        volvo240.startEngine();
         volvo240.gas(1);
         volvo240.turnLeft();
         assertEquals(3, volvo240.getCurrentDirection());
@@ -50,41 +50,41 @@ public class VolvoTest {
     @Test
     public void MoveForward() {
         volvo240 = new Volvo240();
-        volvo240.startButton();
+        volvo240.startEngine();
         volvo240.gas(1);
         volvo240.move();
-        assertEquals(1, volvo240.getPosition().y, 0.2);
+        assertEquals(1, volvo240.getPosition().getY(), 0.2);
     }
 
     @Test
     public void MoveRight() {
         volvo240 = new Volvo240();
-        volvo240.startButton();
+        volvo240.startEngine();
         volvo240.turnRight();
         volvo240.gas(1);
         volvo240.move();
-        assertEquals(1, volvo240.getPosition().x, 0.2);
+        assertEquals(1, volvo240.getPosition().getX(), 0.2);
     }
 
     @Test
     public void MoveDown() {
         volvo240 = new Volvo240();
-        volvo240.startButton();
+        volvo240.startEngine();
         volvo240.turnRight();
         volvo240.turnRight();
         volvo240.gas(1);
         volvo240.move();
-        assertEquals(-1, volvo240.getPosition().y, 0.2);
+        assertEquals(-1, volvo240.getPosition().getY(), 0.2);
     }
 
     @Test
     public void MoveLeft() {
         volvo240 = new Volvo240();
-        volvo240.startButton();
+        volvo240.startEngine();
         volvo240.turnLeft();
         volvo240.gas(1);
         volvo240.move();
-        assertEquals(-1, volvo240.getPosition().x, 0.2);
+        assertEquals(-1, volvo240.getPosition().getX(), 0.2);
     }
 
     @Test

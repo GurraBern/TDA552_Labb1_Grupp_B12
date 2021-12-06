@@ -5,6 +5,9 @@ public class Truck extends Vehicle{
         super(modelName, color, nrDoors, enginePower);
     }
 
+    /**
+     * Calculates how fast the Car should accelerate or decelerate
+     */
     @Override
     protected double speedFactor() {
         return this.getEnginePower() * 0.005;

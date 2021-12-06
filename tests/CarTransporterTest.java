@@ -24,7 +24,7 @@ public class CarTransporterTest {
 
     @Test
     public void CarTransporterGas() {
-        carTransporter.startButton();
+        carTransporter.startEngine();
         carTransporter.gas(1);
 
         carTransporter.move();

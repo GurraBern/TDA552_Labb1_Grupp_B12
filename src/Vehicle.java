@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.Arrays;
 import static java.lang.System.out;
 
@@ -8,7 +9,7 @@ public abstract class Vehicle implements IMovable {
     private final int nrDoors; // Number of doors on the car
     private double currentSpeed; // The current speed of the car
     private final double enginePower; // Engine power of the car
-    private Point currentPosition = new Point(0,0);
+    private Point2D currentPosition = new Point(0,0);
     private int directionNumber = 0;
     private boolean engineOn;
     private boolean handBrakeUp;
@@ -23,21 +24,21 @@ public abstract class Vehicle implements IMovable {
     }
 
     public void move() {
-        if (directionNumber == 0) {
-            currentPosition.y += currentSpeed;
-        } else if (directionNumber == 1) {
-            currentPosition.x += currentSpeed;
-        } else if (directionNumber == 2) {
-            currentPosition.y -= currentSpeed;
-        } else if (directionNumber == 3) {
-            currentPosition.x -= currentSpeed;
-        }
-    }
+        double x = currentPosition.getX();
+        double y = currentPosition.getY();
 
+        double speed = getCurrentSpeed();
+        switch (directionNumber) {
+            case 0 -> x += speed;
+            case 1 -> y += speed;
+            case 2 -> x -= speed;
+            case 3 -> y -= speed;
+        }
+        currentPosition.setLocation(x, y);
+    }
 
     public void turnLeft() {
         //out.println(DirectionEnum.EAST.getDirection());
-
 
         if (this.directionNumber != 0) {
             this.directionNumber -= 1;
@@ -54,7 +55,7 @@ public abstract class Vehicle implements IMovable {
         }
     }
 
-    public void setLocation(Point position){
+    public void setLocation(Point2D position){
         this.currentPosition = position;
     }
 
@@ -74,7 +75,7 @@ public abstract class Vehicle implements IMovable {
         return this.currentSpeed;
     }
 
-    public Point getPosition() {
+    public Point2D getPosition() {
         return this.currentPosition;
     }
 
@@ -102,22 +103,14 @@ public abstract class Vehicle implements IMovable {
         handBrakeUp = false;
     }
 
-    private void startEngine() {
+    public void startEngine() {
         this.currentSpeed = 0.1;
         this.engineOn = true;
     }
 
-    private void stopEngine(){
+    public void stopEngine(){
         this.currentSpeed = 0;
         this.engineOn = false;
-    }
-
-    public void startButton(){
-        if (engineOn)
-            stopEngine();
-        else {
-            startEngine();
-        }
     }
 
     private void incrementSpeed(double amount){

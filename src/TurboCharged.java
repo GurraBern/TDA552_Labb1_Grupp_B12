@@ -7,6 +7,9 @@ public abstract class TurboCharged extends Car{
         super(modelName, color, nrDoors, enginePower);
     }
 
+    /**
+     * returns the state of the turbo
+     */
     public boolean getTurboOn() {
         return turboOn;
     }
@@ -19,6 +22,10 @@ public abstract class TurboCharged extends Car{
         turboOn = false;
     }
 
+
+    /**
+     * Calculates how fast the Car should accelerate or decelerate
+     */
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;

@@ -5,8 +5,11 @@ public abstract class Trimmed extends Car{
         super(modelName, color, nrDoors, enginePower);
     }
 
+    /**
+     * Calculates how fast the Car should accelerate or decelerate
+     */
     public double speedFactor(){
         double trimFactor = 1.25;
-        return this.getEnginePower() * 0.01 * trimFactor;
+        return this.getEnginePower() * 0.1 * trimFactor;
     }
 }

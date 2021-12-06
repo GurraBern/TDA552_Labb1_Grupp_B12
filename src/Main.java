@@ -10,33 +10,8 @@ public class Main {
 
         Volvo240 volvo240 = new Volvo240();
         Saab95 saab95 = new Saab95();
-        CarTransporter<Car> cartransporter = new CarTransporter<>(2);
+        CarTransporter cartransporter = new CarTransporter(2);
 
-        ArrayList<Car> worldCars = new ArrayList<Car>();
-        worldCars.add(volvo240);
-        worldCars.add(saab95);
-
-        cartransporter.lowerPlatform();
-        cartransporter.loadCar(volvo240, worldCars);
-        cartransporter.raisePlatform();
-
-        cartransporter.startButton();
-        cartransporter.gas(1);
-        cartransporter.move();
-        cartransporter.gas(1);
-        cartransporter.move();
-        cartransporter.gas(1);
-        cartransporter.move();
-        cartransporter.gas(1);
-
-        volvo240.startButton();
-        volvo240.gas(1);
-        volvo240.move();
-        volvo240.gas(1);
-        volvo240.move();
-
-        out.println(cartransporter.getPosition());
-        out.println(volvo240.getPosition());
 
         //ArrayList<Car> carlist = cartransporter.getCars();
         //out.println(carlist.get(0).getPosition());
