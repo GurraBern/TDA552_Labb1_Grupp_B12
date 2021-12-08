@@ -1,7 +1,11 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Scania extends TruckWithPlatform {
-    public Scania(String modelName, Color color, Integer nrDoors, double enginePower, int maxAngle) {
-        super(modelName, color, nrDoors, enginePower, maxAngle);
+
+    public Scania() {
+        super("Scania", Color.BLACK, 2, 900, 70);
     }
 }

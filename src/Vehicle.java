@@ -1,6 +1,11 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Objects;
+
 import static java.lang.System.out;
 
 public abstract class Vehicle implements IMovable {
@@ -28,18 +33,21 @@ public abstract class Vehicle implements IMovable {
         double y = currentPosition.getY();
 
         double speed = getCurrentSpeed();
+        if (Objects.equals(modelName, "Saab95")) {
+            out.println("current speed " + currentSpeed);
+
+        }
+
         switch (directionNumber) {
             case 0 -> x += speed;
             case 1 -> y += speed;
             case 2 -> x -= speed;
             case 3 -> y -= speed;
         }
-        currentPosition.setLocation(x, y);
+        this.currentPosition.setLocation(x, y);
     }
 
     public void turnLeft() {
-        //out.println(DirectionEnum.EAST.getDirection());
-
         if (this.directionNumber != 0) {
             this.directionNumber -= 1;
         } else {
@@ -102,6 +110,8 @@ public abstract class Vehicle implements IMovable {
     public void releaseHandbrake() {
         handBrakeUp = false;
     }
+
+
 
     public void startEngine() {
         this.currentSpeed = 0.1;

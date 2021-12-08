@@ -10,6 +10,6 @@ public abstract class Trimmed extends Car{
      */
     public double speedFactor(){
         double trimFactor = 1.25;
-        return this.getEnginePower() * 0.1 * trimFactor;
+        return this.getEnginePower() * 0.1 * trimFactor * 10;
     }
 }

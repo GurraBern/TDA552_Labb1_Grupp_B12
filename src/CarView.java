@@ -57,8 +57,6 @@ public class CarView extends JFrame{
 
         this.add(drawPanel);
 
-
-
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -68,7 +66,6 @@ public class CarView extends JFrame{
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-                out.println(gasAmount);
             }
         });
 
@@ -117,7 +114,7 @@ public class CarView extends JFrame{
             }
         });
 
-        gasButton.addActionListener(new ActionListener() {
+        brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 carC.brake(gasAmount);
@@ -146,6 +143,8 @@ public class CarView extends JFrame{
 
         // Get the computer screen resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        //out.println(dim.width);
         // Center the frame
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         // Make the frame visible
